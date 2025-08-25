@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Song, MidiNote, MapPosition, RecordingState, UploadedCorpus, MidiStatus, TimeSignature, Quantization } from './types';
 import * as geminiService from './services/geminiService';
@@ -93,6 +94,7 @@ const classifyNotes = (notes: MidiNote[]): { melody: MidiNote[], harmony: MidiNo
     return { melody, harmony };
 };
 
+
 const App: React.FC = () => {
     const [songs, setSongs] = useState<Song[]>([]);
     const [corpusName, setCorpusName] = useState('default');
@@ -105,7 +107,7 @@ const App: React.FC = () => {
     const [userMelody, setUserMelody] = useState<Song | null>(null);
     const [userMelodyHistory, setUserMelodyHistory] = useState<Song[]>([]);
 
-    const { play, stop, playingSongId, activePitches, cleanup } = useMidiPlayer();
+    const { play, stop, playingSongId, activePitches, audioError, cleanup } = useMidiPlayer();
     
     const [bpm, setBpm] = useState(120);
     const [timeSignature, setTimeSignature] = useState<TimeSignature>('4/4');
@@ -129,6 +131,7 @@ const App: React.FC = () => {
     const [appRecordingState, setAppRecordingState] = useState<RecordingState>(RecordingState.Idle);
 
     useEffect(() => {
+        // Don't create synths immediately - wait for user interaction
         dbService.getAllCorpusNames().then(names => setUploadedCorpusNames(names));
         return () => {
             stop();
@@ -162,6 +165,8 @@ const App: React.FC = () => {
             
             setSongs(corpusSongs);
             const firstSong = corpusSongs[0] || null;
+
+            setSongs(corpusSongs);
             setSelectedSong(prevSelected => {
                 if (prevSelected && (prevSelected.id === 'user-melody' || prevSelected.id.startsWith('user-melody-history-'))) {
                     return prevSelected;
@@ -264,6 +269,7 @@ const App: React.FC = () => {
     const startRecordingSequence = useCallback(async () => {
         if (appRecordingState !== RecordingState.Idle) return;
         
+        // Ensure synths are initialized before using them
         await ensureSynthsInitialized();
         
         if (typeof Tone !== 'undefined' && Tone.context.state !== 'running') {
@@ -504,7 +510,7 @@ const App: React.FC = () => {
             a.href = url;
             a.download = `${selectedSong.name.replace(/\s+/g, '_')}.mid`;
             document.body.appendChild(a);
-            a.click();
+a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
 
@@ -620,6 +626,7 @@ const App: React.FC = () => {
                             </div>
                             {error && <p className="text-red-400 text-sm bg-red-900/50 p-2 rounded-md">{error}</p>}
                             {recorderError && <p className="text-amber-400 text-sm bg-amber-900/50 p-2 rounded-md">{recorderError}</p>}
+                            {audioError && <p className="text-orange-400 text-sm bg-orange-900/50 p-2 rounded-md">{audioError}</p>}
                         </div>
                         
                         {selectedSong ? (
@@ -702,17 +709,17 @@ const App: React.FC = () => {
                         </div>
                          <button
                             onClick={appRecordingState === RecordingState.Recording ? handleStopRecording : startRecordingSequence}
-                            className={`w-full flex items-center justify-center py-2 px-4 rounded-md transition-all font-semibold text-white ${appRecordingState === RecordingState.Recording ? 'bg-red-600 hover:bg-red-500 animate-pulse' : 'bg-gray-600 hover:bg-gray-500'}`}
+                            className={`flex items-center justify-center py-1.5 px-3 rounded-md transition-all text-sm font-medium text-white ${appRecordingState === RecordingState.Recording ? 'bg-red-600 hover:bg-red-500 animate-pulse' : 'bg-gray-600 hover:bg-gray-500'}`}
                             disabled={appRecordingState === RecordingState.Processing || appRecordingState === RecordingState.Precount}
                         >
                             {appRecordingState === RecordingState.Recording ? (
-                                <> <StopIcon className="w-5 h-5 mr-2"/> Stop Recording </>
+                                <> <StopIcon className="w-4 h-4 mr-1.5"/> Stop </>
                             ) : appRecordingState === RecordingState.Processing ? (
-                                <> <LoadingSpinner className="w-5 h-5 mr-2"/> Processing... </>
+                                <> <LoadingSpinner className="w-4 h-4 mr-1.5"/> Processing... </>
                             ) : appRecordingState === RecordingState.Precount ? (
-                                <> <LoadingSpinner className="w-5 h-5 mr-2"/> Get Ready... </>
+                                <> <LoadingSpinner className="w-4 h-4 mr-1.5"/> Ready... </>
                             ) : (
-                                <> <RecordIcon className="w-5 h-5 mr-2"/> Start Recording </>
+                                <> <RecordIcon className="w-4 h-4 mr-1.5"/> Record </>
                             )}
                         </button>
                         <div className="mt-3">
