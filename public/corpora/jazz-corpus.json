@@ -1,0 +1,380 @@
+
+[
+  {
+    "id": "jazz-autumn-leaves",
+    "name": "Autumn Leaves",
+    "melody": [
+      { "pitch": 67, "startTime": 1.5, "duration": 0.5 },
+      { "pitch": 65, "startTime": 2.0, "duration": 1.0 },
+      { "pitch": 64, "startTime": 3.0, "duration": 0.5 },
+      { "pitch": 62, "startTime": 3.5, "duration": 0.5 },
+      { "pitch": 60, "startTime": 4.0, "duration": 1.0 },
+      { "pitch": 59, "startTime": 5.0, "duration": 0.5 },
+      { "pitch": 57, "startTime": 5.5, "duration": 2.0 }
+    ],
+    "harmony": [
+      { "pitch": 53, "startTime": 0, "duration": 2 }, { "pitch": 57, "startTime": 0, "duration": 2 }, { "pitch": 60, "startTime": 0, "duration": 2 }, { "pitch": 65, "startTime": 0, "duration": 2 },
+      { "pitch": 58, "startTime": 2, "duration": 2 }, { "pitch": 62, "startTime": 2, "duration": 2 }, { "pitch": 65, "startTime": 2, "duration": 2 }, { "pitch": 69, "startTime": 2, "duration": 2 },
+      { "pitch": 52, "startTime": 4, "duration": 2 }, { "pitch": 55, "startTime": 4, "duration": 2 }, { "pitch": 59, "startTime": 4, "duration": 2 }, { "pitch": 64, "startTime": 4, "duration": 2 },
+      { "pitch": 57, "startTime": 6, "duration": 2 }, { "pitch": 60, "startTime": 6, "duration": 2 }, { "pitch": 64, "startTime": 6, "duration": 2 }, { "pitch": 69, "startTime": 6, "duration": 2 }
+    ],
+    "analysis": {
+      "key": "E Minor", "mode": "Aeolian", "rhythmicCharacter": "balanced", "intervalCharacter": "small-intervals",
+      "harmonicComplexity": "sophisticated", "chordChanges": 4, "melodicRepetitions": 0,
+      "melodicComplexity": 40, "harmonicRichness": 75, "melodicRichness": 60
+    },
+    "mapPosition": { "x": 53.3, "y": 75 }
+  },
+  {
+    "id": "jazz-take-five",
+    "name": "Take Five",
+    "melody": [
+      { "pitch": 75, "startTime": 0.0, "duration": 0.5 }, { "pitch": 70, "startTime": 0.625, "duration": 0.25 },
+      { "pitch": 68, "startTime": 1.25, "duration": 0.25 }, { "pitch": 67, "startTime": 1.875, "duration": 0.25 },
+      { "pitch": 68, "startTime": 2.5, "duration": 0.5 }, { "pitch": 70, "startTime": 3.125, "duration": 0.25 },
+      { "pitch": 75, "startTime": 3.75, "duration": 0.5 }, { "pitch": 77, "startTime": 4.375, "duration": 1.0 }
+    ],
+    "harmony": [
+      { "pitch": 51, "startTime": 0, "duration": 2.5 }, { "pitch": 55, "startTime": 0, "duration": 2.5 }, { "pitch": 58, "startTime": 0, "duration": 2.5 }, { "pitch": 61, "startTime": 0, "duration": 2.5 },
+      { "pitch": 46, "startTime": 2.5, "duration": 2.5 }, { "pitch": 51, "startTime": 2.5, "duration": 2.5 }, { "pitch": 55, "startTime": 2.5, "duration": 2.5 }, { "pitch": 58, "startTime": 2.5, "duration": 2.5 }
+    ],
+    "analysis": {
+      "key": "Eb Minor", "mode": "Aeolian", "rhythmicCharacter": "short-notes", "intervalCharacter": "large-intervals",
+      "harmonicComplexity": "moderate", "chordChanges": 2, "melodicRepetitions": 0,
+      "melodicComplexity": 80, "harmonicRichness": 40, "melodicRichness": 70
+    },
+    "mapPosition": { "x": 73.3, "y": 40 }
+  },
+  {
+    "id": "jazz-so-what",
+    "name": "So What",
+    "melody": [
+      { "pitch": 62, "startTime": 4.0, "duration": 2.0 }, { "pitch": 62, "startTime": 6.0, "duration": 2.0 },
+      { "pitch": 64, "startTime": 8.0, "duration": 2.0 }, { "pitch": 65, "startTime": 10.0, "duration": 2.0 },
+      { "pitch": 67, "startTime": 12.0, "duration": 4.0 }
+    ],
+    "harmony": [
+      { "pitch": 50, "startTime": 0, "duration": 8 }, { "pitch": 53, "startTime": 0, "duration": 8 }, { "pitch": 57, "startTime": 0, "duration": 8 }, { "pitch": 60, "startTime": 0, "duration": 8 }, { "pitch": 64, "startTime": 0, "duration": 8 },
+      { "pitch": 51, "startTime": 8, "duration": 8 }, { "pitch": 54, "startTime": 8, "duration": 8 }, { "pitch": 58, "startTime": 8, "duration": 8 }, { "pitch": 61, "startTime": 8, "duration": 8 }, { "pitch": 65, "startTime": 8, "duration": 8 }
+    ],
+    "analysis": {
+      "key": "D Minor", "mode": "Dorian", "rhythmicCharacter": "long-notes", "intervalCharacter": "balanced",
+      "harmonicComplexity": "simple", "chordChanges": 2, "melodicRepetitions": 1,
+      "melodicComplexity": 25, "harmonicRichness": 35, "melodicRichness": 80
+    },
+    "mapPosition": { "x": 61.6, "y": 35 }
+  },
+  {
+    "id": "jazz-all-the-things-you-are",
+    "name": "All the Things You Are",
+    "melody": [
+      { "pitch": 65, "startTime": 0.0, "duration": 0.75 }, { "pitch": 68, "startTime": 0.75, "duration": 0.25 },
+      { "pitch": 70, "startTime": 1.0, "duration": 0.5 }, { "pitch": 67, "startTime": 1.5, "duration": 0.5 },
+      { "pitch": 72, "startTime": 2.0, "duration": 1.0 }
+    ],
+    "harmony": [
+      { "pitch": 53, "startTime": 0, "duration": 1 }, { "pitch": 57, "startTime": 0, "duration": 1 }, { "pitch": 60, "startTime": 0, "duration": 1 },
+      { "pitch": 58, "startTime": 1, "duration": 1 }, { "pitch": 62, "startTime": 1, "duration": 1 }, { "pitch": 65, "startTime": 1, "duration": 1 }
+    ],
+    "analysis": {
+      "key": "Ab Major", "mode": "Ionian", "rhythmicCharacter": "balanced", "intervalCharacter": "balanced",
+      "harmonicComplexity": "sophisticated", "chordChanges": 2, "melodicRepetitions": 0,
+      "melodicComplexity": 65, "harmonicRichness": 85, "melodicRichness": 70
+    },
+    "mapPosition": { "x": 68.3, "y": 85 }
+  },
+  {
+    "id": "jazz-blue-bossa",
+    "name": "Blue Bossa",
+    "melody": [
+      { "pitch": 60, "startTime": 0.5, "duration": 0.5 }, { "pitch": 63, "startTime": 1.0, "duration": 0.5 },
+      { "pitch": 65, "startTime": 1.5, "duration": 0.5 }, { "pitch": 66, "startTime": 2.0, "duration": 0.5 },
+      { "pitch": 65, "startTime": 2.5, "duration": 1.5 }
+    ],
+    "harmony": [
+      { "pitch": 48, "startTime": 0, "duration": 2 }, { "pitch": 51, "startTime": 0, "duration": 2 }, { "pitch": 55, "startTime": 0, "duration": 2 },
+      { "pitch": 53, "startTime": 2, "duration": 2 }, { "pitch": 56, "startTime": 2, "duration": 2 }, { "pitch": 60, "startTime": 2, "duration": 2 }
+    ],
+    "analysis": {
+      "key": "C Minor", "mode": "Aeolian", "rhythmicCharacter": "balanced", "intervalCharacter": "small-intervals",
+      "harmonicComplexity": "moderate", "chordChanges": 2, "melodicRepetitions": 0,
+      "melodicComplexity": 50, "harmonicRichness": 65, "melodicRichness": 55
+    },
+    "mapPosition": { "x": 53.3, "y": 65 }
+  },
+  {
+    "id": "jazz-body-and-soul",
+    "name": "Body and Soul",
+    "melody": [
+      { "pitch": 61, "startTime": 0.5, "duration": 1.0 }, { "pitch": 62, "startTime": 1.5, "duration": 1.5 },
+      { "pitch": 64, "startTime": 3.0, "duration": 1.0 }
+    ],
+    "harmony": [
+      { "pitch": 51, "startTime": 0, "duration": 2 }, { "pitch": 55, "startTime": 0, "duration": 2 }, { "pitch": 58, "startTime": 0, "duration": 2 },
+      { "pitch": 50, "startTime": 2, "duration": 2 }, { "pitch": 53, "startTime": 2, "duration": 2 }, { "pitch": 57, "startTime": 2, "duration": 2 }
+    ],
+    "analysis": {
+      "key": "Db Major", "mode": "Ionian", "rhythmicCharacter": "long-notes", "intervalCharacter": "small-intervals",
+      "harmonicComplexity": "sophisticated", "chordChanges": 2, "melodicRepetitions": 0,
+      "melodicComplexity": 30, "harmonicRichness": 90, "melodicRichness": 85
+    },
+    "mapPosition": { "x": 66.6, "y": 90 }
+  },
+  {
+    "id": "jazz-cherokee",
+    "name": "Cherokee",
+    "melody": [
+      { "pitch": 72, "startTime": 0.0, "duration": 0.25 }, { "pitch": 70, "startTime": 0.25, "duration": 0.25 },
+      { "pitch": 69, "startTime": 0.5, "duration": 0.25 }, { "pitch": 67, "startTime": 0.75, "duration": 0.25 },
+      { "pitch": 65, "startTime": 1.0, "duration": 0.25 }, { "pitch": 64, "startTime": 1.25, "duration": 0.25 },
+      { "pitch": 62, "startTime": 1.5, "duration": 0.25 }, { "pitch": 60, "startTime": 1.75, "duration": 0.25 }
+    ],
+    "harmony": [
+      { "pitch": 58, "startTime": 0, "duration": 1 }, { "pitch": 62, "startTime": 0, "duration": 1 }, { "pitch": 65, "startTime": 0, "duration": 1 },
+      { "pitch": 53, "startTime": 1, "duration": 1 }, { "pitch": 57, "startTime": 1, "duration": 1 }, { "pitch": 60, "startTime": 1, "duration": 1 }
+    ],
+    "analysis": {
+      "key": "Bb Major", "mode": "Ionian", "rhythmicCharacter": "short-notes", "intervalCharacter": "small-intervals",
+      "harmonicComplexity": "moderate", "chordChanges": 2, "melodicRepetitions": 0,
+      "melodicComplexity": 95, "harmonicRichness": 70, "melodicRichness": 40
+    },
+    "mapPosition": { "x": 58.3, "y": 70 }
+  },
+  {
+    "id": "jazz-fly-me-to-the-moon",
+    "name": "Fly Me to the Moon",
+    "melody": [
+      { "pitch": 67, "startTime": 0, "duration": 0.5 }, { "pitch": 64, "startTime": 0.5, "duration": 0.5 },
+      { "pitch": 65, "startTime": 1.0, "duration": 1.0 }, { "pitch": 62, "startTime": 2.0, "duration": 1.0 }
+    ],
+    "harmony": [
+      { "pitch": 53, "startTime": 0, "duration": 1 }, { "pitch": 57, "startTime": 0, "duration": 1 }, { "pitch": 60, "startTime": 0, "duration": 1 },
+      { "pitch": 58, "startTime": 1, "duration": 1 }, { "pitch": 62, "startTime": 1, "duration": 1 }, { "pitch": 65, "startTime": 1, "duration": 1 }
+    ],
+    "analysis": {
+      "key": "C Major", "mode": "Ionian", "rhythmicCharacter": "balanced", "intervalCharacter": "small-intervals",
+      "harmonicComplexity": "moderate", "chordChanges": 2, "melodicRepetitions": 0,
+      "melodicComplexity": 35, "harmonicRichness": 55, "melodicRichness": 50
+    },
+    "mapPosition": { "x": 45.0, "y": 55 }
+  },
+  {
+    "id": "jazz-giant-steps",
+    "name": "Giant Steps",
+    "melody": [
+      { "pitch": 61, "startTime": 0.0, "duration": 0.25 }, { "pitch": 63, "startTime": 0.25, "duration": 0.25 },
+      { "pitch": 66, "startTime": 0.5, "duration": 0.25 }, { "pitch": 68, "startTime": 0.75, "duration": 0.25 },
+      { "pitch": 70, "startTime": 1.0, "duration": 0.25 }, { "pitch": 72, "startTime": 1.25, "duration": 0.25 },
+      { "pitch": 75, "startTime": 1.5, "duration": 0.25 }, { "pitch": 77, "startTime": 1.75, "duration": 0.25 }
+    ],
+    "harmony": [
+      { "pitch": 59, "startTime": 0, "duration": 0.5 }, { "pitch": 63, "startTime": 0, "duration": 0.5 }, { "pitch": 66, "startTime": 0, "duration": 0.5 },
+      { "pitch": 51, "startTime": 0.5, "duration": 0.5 }, { "pitch": 55, "startTime": 0.5, "duration": 0.5 }, { "pitch": 58, "startTime": 0.5, "duration": 0.5 }
+    ],
+    "analysis": {
+      "key": "Multi-tonic", "mode": "Ionian", "rhythmicCharacter": "short-notes", "intervalCharacter": "large-intervals",
+      "harmonicComplexity": "sophisticated", "chordChanges": 4, "melodicRepetitions": 0,
+      "melodicComplexity": 100, "harmonicRichness": 100, "melodicRichness": 90
+    },
+    "mapPosition": { "x": 93.3, "y": 100 }
+  },
+  {
+    "id": "jazz-the-girl-from-ipanema",
+    "name": "The Girl from Ipanema",
+    "melody": [
+      { "pitch": 70, "startTime": 0, "duration": 1.5 }, { "pitch": 68, "startTime": 1.5, "duration": 0.5 },
+      { "pitch": 67, "startTime": 2.0, "duration": 1.5 }, { "pitch": 65, "startTime": 3.5, "duration": 0.5 }
+    ],
+    "harmony": [
+      { "pitch": 53, "startTime": 0, "duration": 2 }, { "pitch": 58, "startTime": 0, "duration": 2 }, { "pitch": 62, "startTime": 0, "duration": 2 },
+      { "pitch": 54, "startTime": 2, "duration": 2 }, { "pitch": 59, "startTime": 2, "duration": 2 }, { "pitch": 63, "startTime": 2, "duration": 2 }
+    ],
+    "analysis": {
+      "key": "F Major", "mode": "Ionian", "rhythmicCharacter": "long-notes", "intervalCharacter": "small-intervals",
+      "harmonicComplexity": "moderate", "chordChanges": 2, "melodicRepetitions": 0,
+      "melodicComplexity": 20, "harmonicRichness": 60, "melodicRichness": 65
+    },
+    "mapPosition": { "x": 50.0, "y": 60 }
+  },
+  {
+    "id": "jazz-on-green-dolphin-street",
+    "name": "On Green Dolphin Street",
+    "melody": [
+      { "pitch": 60, "startTime": 0, "duration": 1.0 }, { "pitch": 63, "startTime": 1.0, "duration": 0.5 },
+      { "pitch": 62, "startTime": 1.5, "duration": 0.5 }, { "pitch": 65, "startTime": 2.0, "duration": 1.0 }
+    ],
+    "harmony": [
+      { "pitch": 48, "startTime": 0, "duration": 2 }, { "pitch": 52, "startTime": 0, "duration": 2 }, { "pitch": 55, "startTime": 0, "duration": 2 },
+      { "pitch": 50, "startTime": 2, "duration": 2 }, { "pitch": 53, "startTime": 2, "duration": 2 }, { "pitch": 57, "startTime": 2, "duration": 2 }
+    ],
+    "analysis": {
+      "key": "C Major", "mode": "Ionian", "rhythmicCharacter": "balanced", "intervalCharacter": "small-intervals",
+      "harmonicComplexity": "sophisticated", "chordChanges": 2, "melodicRepetitions": 0,
+      "melodicComplexity": 45, "harmonicRichness": 78, "melodicRichness": 75
+    },
+    "mapPosition": { "x": 65.0, "y": 78 }
+  },
+  {
+    "id": "jazz-in-a-sentimental-mood",
+    "name": "In a Sentimental Mood",
+    "melody": [
+      { "pitch": 69, "startTime": 0.5, "duration": 1.5 }, { "pitch": 67, "startTime": 2.0, "duration": 0.5 },
+      { "pitch": 65, "startTime": 2.5, "duration": 1.5 }
+    ],
+    "harmony": [
+      { "pitch": 53, "startTime": 0, "duration": 2 }, { "pitch": 57, "startTime": 0, "duration": 2 }, { "pitch": 60, "startTime": 0, "duration": 2 },
+      { "pitch": 55, "startTime": 2, "duration": 2 }, { "pitch": 58, "startTime": 2, "duration": 2 }, { "pitch": 62, "startTime": 2, "duration": 2 }
+    ],
+    "analysis": {
+      "key": "F Major", "mode": "Ionian", "rhythmicCharacter": "long-notes", "intervalCharacter": "small-intervals",
+      "harmonicComplexity": "moderate", "chordChanges": 2, "melodicRepetitions": 0,
+      "melodicComplexity": 15, "harmonicRichness": 82, "melodicRichness": 88
+    },
+    "mapPosition": { "x": 63.6, "y": 82 }
+  },
+  {
+    "id": "jazz-my-funny-valentine",
+    "name": "My Funny Valentine",
+    "melody": [
+      { "pitch": 60, "startTime": 0.5, "duration": 1.5 }, { "pitch": 61, "startTime": 2.0, "duration": 0.5 },
+      { "pitch": 60, "startTime": 2.5, "duration": 1.5 }
+    ],
+    "harmony": [
+      { "pitch": 48, "startTime": 0, "duration": 1 }, { "pitch": 51, "startTime": 0, "duration": 1 }, { "pitch": 55, "startTime": 0, "duration": 1 },
+      { "pitch": 48, "startTime": 1, "duration": 1 }, { "pitch": 52, "startTime": 1, "duration": 1 }, { "pitch": 55, "startTime": 1, "duration": 1 }
+    ],
+    "analysis": {
+      "key": "C Minor", "mode": "Aeolian", "rhythmicCharacter": "long-notes", "intervalCharacter": "small-intervals",
+      "harmonicComplexity": "simple", "chordChanges": 2, "melodicRepetitions": 1,
+      "melodicComplexity": 5, "harmonicRichness": 45, "melodicRichness": 10
+    },
+    "mapPosition": { "x": 8.3, "y": 45 }
+  },
+  {
+    "id": "jazz-night-and-day",
+    "name": "Night and Day",
+    "melody": [
+      { "pitch": 60, "startTime": 0, "duration": 0.75 }, { "pitch": 60, "startTime": 0.75, "duration": 0.25 },
+      { "pitch": 60, "startTime": 1.0, "duration": 0.75 }, { "pitch": 60, "startTime": 1.75, "duration": 0.25 }
+    ],
+    "harmony": [
+      { "pitch": 52, "startTime": 0, "duration": 2 }, { "pitch": 55, "startTime": 0, "duration": 2 }, { "pitch": 59, "startTime": 0, "duration": 2 },
+      { "pitch": 53, "startTime": 2, "duration": 2 }, { "pitch": 57, "startTime": 2, "duration": 2 }, { "pitch": 60, "startTime": 2, "duration": 2 }
+    ],
+    "analysis": {
+      "key": "C Major", "mode": "Ionian", "rhythmicCharacter": "balanced", "intervalCharacter": "small-intervals",
+      "harmonicComplexity": "moderate", "chordChanges": 2, "melodicRepetitions": 4,
+      "melodicComplexity": 2, "harmonicRichness": 68, "melodicRichness": 5
+    },
+    "mapPosition": { "x": 4.0, "y": 68 }
+  },
+  {
+    "id": "jazz-oleo",
+    "name": "Oleo",
+    "melody": [
+      { "pitch": 70, "startTime": 0.0, "duration": 0.125 }, { "pitch": 69, "startTime": 0.125, "duration": 0.125 },
+      { "pitch": 67, "startTime": 0.25, "duration": 0.25 }, { "pitch": 65, "startTime": 0.5, "duration": 0.25 },
+      { "pitch": 64, "startTime": 0.75, "duration": 0.25 }, { "pitch": 62, "startTime": 1.0, "duration": 0.25 }
+    ],
+    "harmony": [
+      { "pitch": 58, "startTime": 0, "duration": 1 }, { "pitch": 62, "startTime": 0, "duration": 1 }, { "pitch": 65, "startTime": 0, "duration": 1 },
+      { "pitch": 53, "startTime": 1, "duration": 1 }, { "pitch": 57, "startTime": 1, "duration": 1 }, { "pitch": 60, "startTime": 1, "duration": 1 }
+    ],
+    "analysis": {
+      "key": "Bb Major", "mode": "Ionian", "rhythmicCharacter": "short-notes", "intervalCharacter": "balanced",
+      "harmonicComplexity": "moderate", "chordChanges": 2, "melodicRepetitions": 0,
+      "melodicComplexity": 98, "harmonicRichness": 62, "melodicRichness": 60
+    },
+    "mapPosition": { "x": 72.6, "y": 62 }
+  },
+  {
+    "id": "jazz-stella-by-starlight",
+    "name": "Stella by Starlight",
+    "melody": [
+      { "pitch": 69, "startTime": 0, "duration": 1.0 }, { "pitch": 65, "startTime": 1.0, "duration": 0.5 },
+      { "pitch": 64, "startTime": 1.5, "duration": 1.5 }
+    ],
+    "harmony": [
+      { "pitch": 51, "startTime": 0, "duration": 1.5 }, { "pitch": 54, "startTime": 0, "duration": 1.5 }, { "pitch": 58, "startTime": 0, "duration": 1.5 },
+      { "pitch": 56, "startTime": 1.5, "duration": 1.5 }, { "pitch": 60, "startTime": 1.5, "duration": 1.5 }, { "pitch": 63, "startTime": 1.5, "duration": 1.5 }
+    ],
+    "analysis": {
+      "key": "Bb Major", "mode": "Ionian", "rhythmicCharacter": "long-notes", "intervalCharacter": "large-intervals",
+      "harmonicComplexity": "sophisticated", "chordChanges": 2, "melodicRepetitions": 0,
+      "melodicComplexity": 55, "harmonicRichness": 92, "melodicRichness": 80
+    },
+    "mapPosition": { "x": 71.6, "y": 92 }
+  },
+  {
+    "id": "jazz-summertime",
+    "name": "Summertime",
+    "melody": [
+      { "pitch": 69, "startTime": 0, "duration": 1.0 }, { "pitch": 69, "startTime": 1.0, "duration": 1.0 },
+      { "pitch": 69, "startTime": 2.0, "duration": 0.5 }, { "pitch": 67, "startTime": 2.5, "duration": 1.5 }
+    ],
+    "harmony": [
+      { "pitch": 57, "startTime": 0, "duration": 4 }, { "pitch": 60, "startTime": 0, "duration": 4 }, { "pitch": 64, "startTime": 0, "duration": 4 }
+    ],
+    "analysis": {
+      "key": "A Minor", "mode": "Aeolian", "rhythmicCharacter": "long-notes", "intervalCharacter": "small-intervals",
+      "harmonicComplexity": "simple", "chordChanges": 1, "melodicRepetitions": 1,
+      "melodicComplexity": 10, "harmonicRichness": 15, "melodicRichness": 20
+    },
+    "mapPosition": { "x": 16.6, "y": 15 }
+  },
+  {
+    "id": "jazz-take-the-a-train",
+    "name": "Take the \"A\" Train",
+    "melody": [
+      { "pitch": 62, "startTime": 0.5, "duration": 0.5 }, { "pitch": 62, "startTime": 1.0, "duration": 0.5 },
+      { "pitch": 64, "startTime": 1.5, "duration": 0.5 }, { "pitch": 69, "startTime": 2.0, "duration": 1.0 }
+    ],
+    "harmony": [
+      { "pitch": 48, "startTime": 0, "duration": 2 }, { "pitch": 52, "startTime": 0, "duration": 2 }, { "pitch": 55, "startTime": 0, "duration": 2 },
+      { "pitch": 50, "startTime": 2, "duration": 2 }, { "pitch": 54, "startTime": 2, "duration": 2 }, { "pitch": 57, "startTime": 2, "duration": 2 }
+    ],
+    "analysis": {
+      "key": "C Major", "mode": "Ionian", "rhythmicCharacter": "balanced", "intervalCharacter": "large-intervals",
+      "harmonicComplexity": "simple", "chordChanges": 2, "melodicRepetitions": 1,
+      "melodicComplexity": 28, "harmonicRichness": 30, "melodicRichness": 45
+    },
+    "mapPosition": { "x": 39.3, "y": 30 }
+  },
+  {
+    "id": "jazz-there-will-never-be-another-you",
+    "name": "There Will Never Be Another You",
+    "melody": [
+      { "pitch": 63, "startTime": 0.0, "duration": 0.5 }, { "pitch": 63, "startTime": 0.5, "duration": 0.5 },
+      { "pitch": 67, "startTime": 1.0, "duration": 0.5 }, { "pitch": 65, "startTime": 1.5, "duration": 0.5 },
+      { "pitch": 63, "startTime": 2.0, "duration": 1.0 }
+    ],
+    "harmony": [
+      { "pitch": 51, "startTime": 0, "duration": 2 }, { "pitch": 55, "startTime": 0, "duration": 2 }, { "pitch": 58, "startTime": 0, "duration": 2 },
+      { "pitch": 56, "startTime": 2, "duration": 2 }, { "pitch": 60, "startTime": 2, "duration": 2 }, { "pitch": 63, "startTime": 2, "duration": 2 }
+    ],
+    "analysis": {
+      "key": "Eb Major", "mode": "Ionian", "rhythmicCharacter": "balanced", "intervalCharacter": "small-intervals",
+      "harmonicComplexity": "moderate", "chordChanges": 2, "melodicRepetitions": 1,
+      "melodicComplexity": 48, "harmonicRichness": 72, "melodicRichness": 66
+    },
+    "mapPosition": { "x": 60.0, "y": 72 }
+  },
+  {
+    "id": "jazz-wave",
+    "name": "Wave",
+    "melody": [
+      { "pitch": 62, "startTime": 0.5, "duration": 0.5 }, { "pitch": 64, "startTime": 1.0, "duration": 0.5 },
+      { "pitch": 65, "startTime": 1.5, "duration": 0.5 }, { "pitch": 67, "startTime": 2.0, "duration": 1.0 }
+    ],
+    "harmony": [
+      { "pitch": 50, "startTime": 0, "duration": 2 }, { "pitch": 53, "startTime": 0, "duration": 2 }, { "pitch": 57, "startTime": 0, "duration": 2 },
+      { "pitch": 45, "startTime": 2, "duration": 2 }, { "pitch": 48, "startTime": 2, "duration": 2 }, { "pitch": 52, "startTime": 2, "duration": 2 }
+    ],
+    "analysis": {
+      "key": "D Major", "mode": "Ionian", "rhythmicCharacter": "balanced", "intervalCharacter": "small-intervals",
+      "harmonicComplexity": "sophisticated", "chordChanges": 2, "melodicRepetitions": 0,
+      "melodicComplexity": 42, "harmonicRichness": 80, "melodicRichness": 72
+    },
+    "mapPosition": { "x": 62.0, "y": 80 }
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "name": "Copy of Gemini Musical Map",
+  "description": "An interactive musical map that analyzes MIDI melodies using AI, places them on a 2D map based on their characteristics, and allows users to generate variations by exploring the map.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}
