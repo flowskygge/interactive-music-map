@@ -4,7 +4,7 @@ An AI-powered interactive musical map that analyzes MIDI melodies, places them o
 
 ## 🚀 Live Demo
 
-**Latest Deployment:** https://interactivemusic-mdmu6chfx-benoit-carres-projects.vercel.app
+**Latest Deployment:** https://interactivemusicmap.vercel.app
 
 ## ✨ Features
 
@@ -136,4 +136,4 @@ Uses AI to cluster songs by:
 
 ---
 
-**Created by Benoit Carré** | [GitHub](https://github.com/flowskygge) | [Live Demo](https://interactivemusic-mdmu6chfx-benoit-carres-projects.vercel.app)
+**Created by Benoit Carré** | [GitHub](https://github.com/flowskygge) | [Live Demo](https://interactivemusicmap.vercel.app)
