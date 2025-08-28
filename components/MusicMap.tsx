@@ -29,6 +29,13 @@ const CustomTooltip = ({ active, payload }: any) => {
 const clamp = (val: number, min: number, max: number) => Math.max(min, Math.min(val, max));
 
 export const MusicMap: React.FC<MusicMapProps> = ({ songs, activeUserMelody, selectedSongId, onNodeClick, onUserMelodyMove, isGeneratingVariation, isDraggable, xAxisLabel, yAxisLabel }) => {
+  console.log('MusicMap rendered with:', { 
+    songsCount: songs.length, 
+    activeUserMelody: activeUserMelody?.id, 
+    selectedSongId, 
+    isDraggable 
+  });
+  
   const [isDragging, setIsDragging] = useState(false);
   const [transientPosition, setTransientPosition] = useState<MapPosition | null>(null);
   const chartContainerRef = useRef<HTMLDivElement>(null);
@@ -37,8 +44,28 @@ export const MusicMap: React.FC<MusicMapProps> = ({ songs, activeUserMelody, sel
   const [domain, setDomain] = useState({ x: [0, 100], y: [0, 100] });
   const [isPanning, setIsPanning] = useState(false);
   const panStartRef = useRef<{x: number, y: number, domainX: number[], domainY: number[] } | null>(null);
+  const [chartDimensions, setChartDimensions] = useState<{ width: number, height: number } | null>(null);
 
   useEffect(() => { if (!isGeneratingVariation) setTransientPosition(null); }, [isGeneratingVariation]);
+  
+  // Update chart dimensions when container size changes
+  useEffect(() => {
+    const updateDimensions = () => {
+      if (chartContainerRef.current) {
+        const rect = chartContainerRef.current.getBoundingClientRect();
+        setChartDimensions({ width: rect.width, height: rect.height });
+      }
+    };
+    
+    updateDimensions();
+    
+    const observer = new ResizeObserver(updateDimensions);
+    if (chartContainerRef.current) {
+      observer.observe(chartContainerRef.current);
+    }
+    
+    return () => observer.disconnect();
+  }, []);
 
   const data = (activeUserMelody ? [...songs, activeUserMelody] : songs)
     .filter(s => s.mapPosition)
@@ -46,6 +73,8 @@ export const MusicMap: React.FC<MusicMapProps> = ({ songs, activeUserMelody, sel
       if (s.id === 'user-melody' && transientPosition) return { ...transientPosition, name: s.name, id: s.id, z: 1.5 };
       return { ...s.mapPosition, name: s.name, id: s.id, z: 1 };
     });
+    
+  console.log('MusicMap data for rendering:', data.length, 'items:', data.map(d => ({ id: d.id, name: d.name, x: d.x, y: d.y })));
     
   const handleMouseDownOnUserMelody = useCallback(() => {
     if (activeUserMelody?.mapPosition && isDraggable) {
@@ -147,10 +176,22 @@ export const MusicMap: React.FC<MusicMapProps> = ({ songs, activeUserMelody, sel
              <button onClick={handleResetZoom} title="Reset Zoom" className="p-1.5 bg-gray-700 hover:bg-gray-600 rounded-full text-gray-300 transition-colors"><RefreshIcon /></button>
           </div>
        </div>
+       
        <div
           className="flex-1 w-full h-full relative" ref={chartContainerRef}
+          onClick={(e) => {
+            console.log('Chart container clicked, target:', e.target);
+            const target = e.target as HTMLElement;
+            console.log('Target classes:', target.className);
+            console.log('Target closest .recharts-cell:', target.closest('.recharts-cell'));
+          }}
           onMouseDown={(e) => {
-            if ((e.target as HTMLElement).closest('.recharts-surface') && !(e.target as HTMLElement).closest('.recharts-cell')) {
+            // Only start panning if we're clicking on the background, not on a song node
+            const target = e.target as HTMLElement;
+            const isOnCell = target.closest('.recharts-cell');
+            const isOnSurface = target.closest('.recharts-surface');
+            
+            if (isOnSurface && !isOnCell) {
               setIsPanning(true);
               panStartRef.current = { x: e.clientX, y: e.clientY, domainX: domain.x, domainY: domain.y };
             }
@@ -169,7 +210,11 @@ export const MusicMap: React.FC<MusicMapProps> = ({ songs, activeUserMelody, sel
             <YAxis type="number" dataKey="y" name={yAxisLabel} domain={domain.y} stroke="#A0AEC0" allowDataOverflow/>
             <ZAxis type="number" dataKey="z" range={[60, 500]} name="size" />
             <Tooltip content={<CustomTooltip />} cursor={{ strokeDasharray: '3 3' }} wrapperStyle={{ zIndex: 10 }} />
-            <Scatter name="Songs" data={data} fill="#8884d8">
+            <Scatter 
+              name="Songs" 
+              data={data} 
+              fill="#8884d8"
+            >
               {data.map((entry, index) => {
                   const isUserMelody = entry.id === 'user-melody';
                   const isHistory = entry.id.startsWith('user-melody-history-');
@@ -181,16 +226,52 @@ export const MusicMap: React.FC<MusicMapProps> = ({ songs, activeUserMelody, sel
                       <Cell key={`cell-${index}`} fill={fill}
                           className={isUserMelody && isDraggable ? 'cursor-grab' : 'cursor-pointer'}
                           onMouseDown={isUserMelody ? handleMouseDownOnUserMelody : undefined}
-                          onClick={() => {
-                            if (didDragRef.current) return;
-                            onNodeClick(entry.id);
-                          }}
                       />
                   );
               })}
             </Scatter>
           </ScatterChart>
         </ResponsiveContainer>
+        
+        {/* Absolutely positioned clickable song buttons */}
+        {data.map((entry, index) => {
+          if (entry.x === undefined || entry.y === undefined) return null;
+          
+          // Calculate pixel position based on data coordinates
+          const [xMin, xMax] = domain.x;
+          const [yMin, yMax] = domain.y;
+          const chartArea = chartContainerRef.current?.getBoundingClientRect();
+          if (!chartArea) return null;
+          
+          const chartMargin = 20;
+          const plotWidth = chartArea.width - (chartMargin * 2);
+          const plotHeight = chartArea.height - (chartMargin * 2);
+          
+          const pixelX = ((entry.x - xMin) / (xMax - xMin)) * plotWidth + chartMargin;
+          const pixelY = plotHeight - ((entry.y - yMin) / (yMax - yMin)) * plotHeight + chartMargin;
+          
+          const isUserMelody = entry.id === 'user-melody';
+          const isHistory = entry.id.startsWith('user-melody-history-');
+          const isSelected = entry.id === selectedSongId;
+          
+          return (
+            <button
+              key={`song-button-${entry.id}`}
+              className="absolute w-6 h-6 rounded-full border-2 border-gray-300 cursor-pointer hover:scale-125 transition-transform z-20"
+              style={{
+                left: `${pixelX - 12}px`,
+                top: `${pixelY - 12}px`,
+                backgroundColor: isSelected ? '#F59E0B' : (isUserMelody ? '#34D399' : (isHistory ? '#4ADE80' : '#6366F1')),
+              }}
+              onClick={(e) => {
+                e.stopPropagation();
+                console.log('Song button clicked:', entry.id);
+                onNodeClick(entry.id);
+              }}
+              title={entry.name}
+            />
+          );
+        })}
       </div>
     </div>
   );

@@ -4,7 +4,6 @@ import * as geminiService from './services/geminiService';
 import * as dbService from './services/dbService';
 import { useMidiRecorder } from './hooks/useMidiRecorder';
 import { useMidiPlayer } from './hooks/useMidiPlayer';
-import { useRecordingSynths } from './hooks/useRecordingSynths';
 import { MusicMap } from './components/MusicMap';
 import { VirtualPiano } from './components/VirtualPiano';
 import { PlayIcon, StopIcon, RecordIcon, LoadingSpinner, MusicNoteIcon, MidiIcon, DownloadIcon } from './components/icons';
@@ -93,6 +92,7 @@ const classifyNotes = (notes: MidiNote[]): { melody: MidiNote[], harmony: MidiNo
     return { melody, harmony };
 };
 
+
 const App: React.FC = () => {
     const [songs, setSongs] = useState<Song[]>([]);
     const [corpusName, setCorpusName] = useState('default');
@@ -105,7 +105,7 @@ const App: React.FC = () => {
     const [userMelody, setUserMelody] = useState<Song | null>(null);
     const [userMelodyHistory, setUserMelodyHistory] = useState<Song[]>([]);
 
-    const { play, stop, playingSongId, activePitches, cleanup } = useMidiPlayer();
+    const { play, stop, playingSongId, activePitches } = useMidiPlayer();
     
     const [bpm, setBpm] = useState(120);
     const [timeSignature, setTimeSignature] = useState<TimeSignature>('4/4');
@@ -115,26 +115,26 @@ const App: React.FC = () => {
     const [mapMode, setMapMode] = useState<'individual' | 'global' | 'synthesis'>('individual');
     const [globalAnalysisRun, setGlobalAnalysisRun] = useState(false);
 
-    const { 
-        ensureSynthsInitialized, 
-        cleanup: cleanupRecordingSynths, 
-        triggerRecordingNote, 
-        releaseRecordingNote, 
-        triggerMetronome 
-    } = useRecordingSynths();
-    
+    const recordingSynth = useRef<any>(null);
+    const metronomeSynth = useRef<any>(null);
     const midiFileInputRef = useRef<HTMLInputElement>(null);
     const jsonFileInputRef = useRef<HTMLInputElement>(null);
     
     const [appRecordingState, setAppRecordingState] = useState<RecordingState>(RecordingState.Idle);
 
     useEffect(() => {
+        metronomeSynth.current = new Tone.MembraneSynth({ pitchDecay: 0.01, octaves: 10, oscillator: { type: 'sine' }, envelope: { attack: 0.001, decay: 0.2, sustain: 0.01, release: 0.1 } }).toDestination();
+        recordingSynth.current = new Tone.PolySynth(Tone.FMSynth, {
+            harmonicity: 3,
+            modulationIndex: 10,
+            envelope: { attack: 0.01, decay: 0.2, sustain: 0.1, release: 0.5 },
+            modulation: { type: 'sine' },
+            modulationEnvelope: { attack: 0.1, decay: 0.3, sustain: 0.1, release: 0.5 }
+        }).toDestination();
+        
         dbService.getAllCorpusNames().then(names => setUploadedCorpusNames(names));
-        return () => {
-            stop();
-            cleanup();
-        };
-    }, [stop, cleanup]);
+        return () => stop();
+    }, [stop]);
 
     const loadCorpus = useCallback(async (name: string) => {
         setIsLoading(true);
@@ -162,6 +162,8 @@ const App: React.FC = () => {
             
             setSongs(corpusSongs);
             const firstSong = corpusSongs[0] || null;
+
+            setSongs(corpusSongs);
             setSelectedSong(prevSelected => {
                 if (prevSelected && (prevSelected.id === 'user-melody' || prevSelected.id.startsWith('user-melody-history-'))) {
                     return prevSelected;
@@ -257,18 +259,18 @@ const App: React.FC = () => {
 
     const { startRecording, stopRecording, error: recorderError, midiInputName, manualNoteOn, manualNoteOff, midiStatus } = useMidiRecorder({
         onRecordingComplete: (notes) => analyzeAndCreateSong(notes, false),
-        onNoteOn: triggerRecordingNote,
-        onNoteOff: releaseRecordingNote
+        onNoteOn: async (pitch) => {
+            if (Tone.context.state !== 'running') await Tone.context.resume();
+            recordingSynth.current?.triggerAttack(Tone.Frequency(pitch, 'midi').toFrequency());
+        },
+        onNoteOff: (pitch) => {
+            recordingSynth.current?.triggerRelease(Tone.Frequency(pitch, 'midi').toFrequency());
+        }
     });
 
     const startRecordingSequence = useCallback(async () => {
         if (appRecordingState !== RecordingState.Idle) return;
-        
-        await ensureSynthsInitialized();
-        
-        if (typeof Tone !== 'undefined' && Tone.context.state !== 'running') {
-            await Tone.context.resume();
-        }
+        if (Tone.context.state !== 'running') await Tone.context.resume();
 
         stop();
         setAppRecordingState(RecordingState.Precount);
@@ -278,7 +280,7 @@ const App: React.FC = () => {
         const now = Tone.now() + 0.1;
 
         for (let i = 0; i < beatsPerMeasure; i++) {
-            triggerMetronome(i === 0 ? 'C4' : 'C3', '8n', now + i * secondsPerBeat);
+            metronomeSynth.current.triggerAttackRelease(i === 0 ? 'C4' : 'C3', '8n', now + i * secondsPerBeat);
         }
         
         Tone.Transport.scheduleOnce(() => {
@@ -288,13 +290,13 @@ const App: React.FC = () => {
 
         let beatCount = 0;
         const metronomeLoop = new Tone.Loop(time => {
-            triggerMetronome(beatCount++ % beatsPerMeasure === 0 ? 'C4' : 'C3', '8n', time);
+            metronomeSynth.current.triggerAttackRelease(beatCount++ % beatsPerMeasure === 0 ? 'C4' : 'C3', '8n', time);
         }, '4n').start(beatsPerMeasure * secondsPerBeat);
         
         Tone.Transport.bpm.value = bpm;
         Tone.Transport.start(now);
 
-    }, [appRecordingState, bpm, timeSignature, startRecording, stop, ensureSynthsInitialized, triggerMetronome]);
+    }, [appRecordingState, bpm, timeSignature, startRecording, stop]);
 
     const handleStopRecording = useCallback(() => {
         stopRecording();
@@ -497,14 +499,14 @@ const App: React.FC = () => {
               });
             }
 
-            const midiBytes = await midi.toArray();
+            const midiBytes = midi.toArray();
             const blob = new Blob([new Uint8Array(midiBytes)], { type: 'audio/midi' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
             a.download = `${selectedSong.name.replace(/\s+/g, '_')}.mid`;
             document.body.appendChild(a);
-            a.click();
+a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
 
@@ -584,18 +586,7 @@ const App: React.FC = () => {
                 
                 <aside className="w-[380px] bg-gray-800 p-4 flex flex-col overflow-y-auto border-l border-gray-700">
                     <div className="flex-1">
-                        <div className="flex items-center justify-between mb-3">
-                            <h2 className="text-lg font-bold text-white">Controls & Analysis</h2>
-                            {selectedSong && (
-                                <button 
-                                    onClick={() => play(selectedSong)} 
-                                    className="p-2 rounded-full hover:bg-gray-600 transition-colors"
-                                    title={playingSongId === selectedSong.id ? "Stop" : "Play"}
-                                >
-                                    {playingSongId === selectedSong.id ? <StopIcon className="w-5 h-5" /> : <PlayIcon className="w-5 h-5" />}
-                                </button>
-                            )}
-                        </div>
+                        <h2 className="text-lg font-bold text-white mb-3">Controls & Analysis</h2>
                         <div className="space-y-3 mb-4">
                              <div className="flex bg-gray-900 p-1 rounded-md w-full text-sm">
                                 <button
@@ -633,7 +624,7 @@ const App: React.FC = () => {
                                             </button>
                                         )}
                                         <button onClick={() => play(selectedSong)} className="p-2 rounded-full hover:bg-gray-600 transition-colors">
-                                            {playingSongId === selectedSong.id ? <StopIcon className="w-5 h-5" /> : <PlayIcon className="w-5 h-5" />}
+                                            {playingSongId === selectedSong.id ? <StopIcon /> : <PlayIcon />}
                                         </button>
                                     </div>
                                 </div>
